@@ -47,6 +47,31 @@ Example :
     (Lot1, "jour lève notre grissaille") -> [(jour, 1), (lève, 1), (notre, 1), (grissaille, 1)]
 '''
 
+# now we can go to implement the reduce function 
+# so we have for each key a list of values, the main goal of reduce is to compute all times the key appear in fragments 
+# input : (key, list_values) - output : (key, value)
+def reduce(key, values):
+    result = 0 
+    for c in values:
+        result += c 
+    return (key, result)
+
+'''
+MapReduce -> " divide and rule "
+
+the main steps : 
+    1. Choose a way to split the data 
+    2. Choose the key to use for the targeted problem
+    3. Write the function code for the MAP operation
+    4. Write the function code for the REDUCE operation
+
+'''
+
+
+
+
+
+
 
 
 
