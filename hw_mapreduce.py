@@ -93,6 +93,32 @@ steps :
             Here we have to split V to horizontal stripes and M to virticla stripes and we apply the same strategy
 '''
 
+'''
+Second Example: Navigate the database tables (Films, directors)
+
+            FILMS(ID_Film*, Title, Nb_hours, #ID_Director)
+            Directors(ID_Director*, Name)
+
+the problem can be easy using SQL but when we are in big dimension, here we will need an other solution 
+
+we will use Reduce-Side Join (mean that the join operation we will apply it in the REDUCE part)
+
+Steps: 
+    
+    - Concatination of the tables on one unique table 
+    - Apply map(key, value) here the key is the name of file (last table) and value is the content <string, int, string>
+        example: (123, (Films, Fast&Furious))
+    - SHUFFLE & SORT to structure the results of map() as peers (key, [v1, v2, ...])
+        example: (123, [(Films, F&F), (Director, James)])
+    - Apply reduce(key, value) collect the films title for the same director
+        
+'''
+
+def map(key,value):
+    intermediate = []
+    for i in value:
+        intermediate.append((i[1], (i[0], i[1:])))
+    return intermediate
 
 
    
